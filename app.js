@@ -12,7 +12,7 @@ var budgetController = (function() {
     return {
         // This object is what gets assigned to the budgetController after function returns
         publicTest: function (b) {
-            console.log(add(b));
+            return add(b);
         }
     }
 })();
