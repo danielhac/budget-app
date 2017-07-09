@@ -18,3 +18,19 @@ var budgetController = (function() {
 })();
 
 
+var UIController = (function () {
+
+
+})();
+
+// Wire up the controller below to create relations with above 2 controllers
+var controller = (function (budgetCtrl, UICtrl) {
+    var z = budgetCtrl.publicTest(5);
+
+    return {
+        anotherPublic: function () {
+            console.log(z);
+        }
+    }
+
+})(budgetController, UIController);
