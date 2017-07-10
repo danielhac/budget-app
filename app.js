@@ -9,16 +9,23 @@ var budgetController = (function() {
 
 var UIController = (function () {
 
+    // Object properties that contains the classes
+    var DOMstrings = {
+        inputType: '.add__type',
+        inputDescription: '.add__description',
+        inputValue: '.add__value'
+    };
+
     return {
         getinput: function () {
             // Instead of returning the 3 variables, return an object containing 3 properties
             return {
                 // Get value which is either 'income' or 'expense'
-                type: document.querySelector('.add__type').value,
+                type: document.querySelector(DOMstrings.inputType).value,
                 // Get value of 'description'
-                description: document.querySelector('.add__description').value,
+                description: document.querySelector(DOMstrings.inputDescription).value,
                 // Get value of 'value'
-                value: document.querySelector('.add__value').value
+                value: document.querySelector(DOMstrings.inputValue).value
             };
         }
     };
