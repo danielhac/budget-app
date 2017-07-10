@@ -13,7 +13,8 @@ var UIController = (function () {
     var DOMstrings = {
         inputType: '.add__type',
         inputDescription: '.add__description',
-        inputValue: '.add__value'
+        inputValue: '.add__value',
+        inputBtn: '.add__btn'
     };
 
     return {
@@ -27,6 +28,11 @@ var UIController = (function () {
                 // Get value of 'value'
                 value: document.querySelector(DOMstrings.inputValue).value
             };
+        },
+
+        // Making 'DOMstrings' public
+        getDOMstrings: function () {
+            return DOMstrings;
         }
     };
 
@@ -34,6 +40,9 @@ var UIController = (function () {
 
 // Wire up the controller below to create relations with above 2 controllers
 var controller = (function (budgetCtrl, UICtrl) {
+
+    // Get the public 'DOMstrings'
+    var DOM = UICtrl.getDOMstrings();
 
     var ctrlAddItem = function () {
         // Get field input data
@@ -52,7 +61,7 @@ var controller = (function (budgetCtrl, UICtrl) {
         // Display budget in UI
     }
 
-    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
 
     document.addEventListener('keypress', function (event) {
         // if key press === enter or return
