@@ -41,13 +41,24 @@ var UIController = (function () {
 // Wire up the controller below to create relations with above 2 controllers
 var controller = (function (budgetCtrl, UICtrl) {
 
-    // Get the public 'DOMstrings'
-    var DOM = UICtrl.getDOMstrings();
+    // Wrapped code within setupEventListeners for organization and executed within 'init'
+    var setupEventListeners = function () {
+        // Get the public 'DOMstrings'
+        var DOM = UICtrl.getDOMstrings();
+
+        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
+
+        document.addEventListener('keypress', function (event) {
+            // if key press === enter or return
+            if(event.keyCode === 13 || event.which === 13) {
+                ctrlAddItem();
+            }
+        });
+    }
 
     var ctrlAddItem = function () {
         // Get field input data
         var input = UICtrl.getinput();
-        console.log(input);
 
         // Add item to budget controller
 
@@ -61,13 +72,14 @@ var controller = (function (budgetCtrl, UICtrl) {
         // Display budget in UI
     }
 
-    document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
-
-    document.addEventListener('keypress', function (event) {
-        // if key press === enter or return
-        if(event.keyCode === 13 || event.which === 13) {
-            ctrlAddItem();
+    return {
+        init: function () {
+            console.log('Started');
+            setupEventListeners();
         }
-    });
+    };
+
 
 })(budgetController, UIController);
+
+controller.init();
