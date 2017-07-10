@@ -9,6 +9,19 @@ var budgetController = (function() {
 
 var UIController = (function () {
 
+    return {
+        getinput: function () {
+            // Instead of returning the 3 variables, return an object containing 3 properties
+            return {
+                // Get value which is either 'income' or 'expense'
+                type: document.querySelector('.add__type').value,
+                // Get value of 'description'
+                description: document.querySelector('.add__description').value,
+                // Get value of 'value'
+                value: document.querySelector('.add__value').value
+            };
+        }
+    };
 
 })();
 
@@ -17,7 +30,8 @@ var controller = (function (budgetCtrl, UICtrl) {
 
     var ctrlAddItem = function () {
         // Get field input data
-
+        var input = UICtrl.getinput();
+        console.log(input);
 
         // Add item to budget controller
 
@@ -29,7 +43,6 @@ var controller = (function (budgetCtrl, UICtrl) {
 
 
         // Display budget in UI
-        console.log('Clicked the add__btn or ENTER pressed');
     }
 
     document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
