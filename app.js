@@ -1,6 +1,6 @@
 // JS - Module Pattern
 
-// An object 'budgetController' containing the method 'publicTest'
+// An object 'budgetController' containing the method 'test'
 
 var budgetController = (function() {
 
@@ -80,8 +80,8 @@ var UIController = (function () {
                 type: document.querySelector(DOMstrings.inputType).value,
                 // Get value of 'description'
                 description: document.querySelector(DOMstrings.inputDescription).value,
-                // Get value of 'value'
-                value: document.querySelector(DOMstrings.inputValue).value
+                // Get value of 'value' - convert string to number
+                value: parseFloat(document.querySelector(DOMstrings.inputValue).value)
             };
         },
         
@@ -156,26 +156,36 @@ var controller = (function (budgetCtrl, UICtrl) {
         });
     }
 
+    var updateBudget = function () {
+        // 5a. Calculate budget
+
+        // 5b. Return the budget
+
+        // 5c. Display budget in UI
+    };
+
     var ctrlAddItem = function () {
         var input, newItem;
 
-        // Get field input data
+        // 1. Get field input data
         input = UICtrl.getinput();
 
-        // Add item to budget controller
-        newItem = budgetCtrl.addItem(input.type, input.description, input.value)
+        // If not empty or NaN
+        if(input.description !== "" && !isNaN(input.value) && input.value > 0) {
+            // 2. Add item to budget controller
+            newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
-        // Add item to UI
-        UICtrl.addListItem(newItem, input.type);
+            // 3. Add item to UI
+            UICtrl.addListItem(newItem, input.type);
 
-        // Clear fields
-        UICtrl.clearFields();
+            // 4. Clear fields
+            UICtrl.clearFields();
 
-        // Calculate budget
+            // 5. Calculate and update budget
+            updateBudget();
+        }
 
-
-        // Display budget in UI
-    }
+    };
 
     return {
         init: function () {
