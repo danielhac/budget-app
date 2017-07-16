@@ -16,6 +16,16 @@ var budgetController = (function() {
         this.value = value;
     };
 
+    var calculateTotal = function (type) {
+        var sum = 0;
+        // Loop through array 'type'
+        data.allItems[type].forEach(function (cur) {
+            sum += cur.value;
+        });
+        // Update 'data.totals' object
+        data.totals[type] = sum;
+    };
+
     var data = {
         allItems: {
             exp: [],
@@ -24,7 +34,9 @@ var budgetController = (function() {
         totals: {
             exp: 0,
             inc: 0
-        }
+        },
+        budget: 0,
+        percentage: -1 // Set as -1 as it is non-existent
     };
 
     return {
@@ -50,6 +62,28 @@ var budgetController = (function() {
 
             // Allows access to the new item to other functions/modules
             return newItem
+        },
+
+        calculateBudget: function () {
+
+            // calculate total income and expenses
+            calculateTotal('exp');
+            calculateTotal('inc');
+
+            // calculate budget: income - expenses
+            data.budget = data.totals.inc - data.totals.exp;
+
+            // calculate % of income that we spent
+            data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+        },
+
+        getBudget: function () {
+            return {
+                budget: data.budget,
+                totalInc: data.totals.inc,
+                totalExp: data.totals.exp,
+                percentage: data.percentage
+            }
         },
         
         test: function () {
@@ -158,10 +192,13 @@ var controller = (function (budgetCtrl, UICtrl) {
 
     var updateBudget = function () {
         // 5a. Calculate budget
+        budgetCtrl.calculateBudget();
 
         // 5b. Return the budget
+        var budget = budgetCtrl.getBudget();
 
         // 5c. Display budget in UI
+        console.log(budget);
     };
 
     var ctrlAddItem = function () {
