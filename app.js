@@ -87,7 +87,7 @@ var budgetController = (function() {
                 totalInc: data.totals.inc,
                 totalExp: data.totals.exp,
                 percentage: data.percentage
-            }
+            };
         },
         
         test: function () {
@@ -247,6 +247,13 @@ var controller = (function (budgetCtrl, UICtrl) {
     return {
         init: function () {
             console.log('Started');
+            // Reset every UI to zero
+            UICtrl.displayBudget({
+                budget: 0,
+                totalInc: 0,
+                totalExp: 0,
+                percentage: -1
+            });
             setupEventListeners();
         }
     };
