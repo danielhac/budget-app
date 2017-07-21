@@ -111,7 +111,8 @@ var UIController = (function () {
         budgetLabel: '.budget__value',
         incomeLabel: '.budget__income--value',
         expensesLabel: '.budget__expenses--value',
-        percentageLabel: '.budget__expenses--percentage'
+        percentageLabel: '.budget__expenses--percentage',
+        container: '.container'
     };
 
     return {
@@ -133,13 +134,13 @@ var UIController = (function () {
             // Create HTML string with placeholder text
             if (type === 'inc') {
                 element = DOMstrings.incomeContainer;
-                html = '<div class="item clearfix" id="income-%id%"> ' +
+                html = '<div class="item clearfix" id="inc-%id%"> ' +
                     '<div class="item__description">%description%</div> <div class="right clearfix"> ' +
                     '<div class="item__value">%value%</div> <div class="item__delete"> ' +
                     '<button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div> </div>';
             } else if (type === 'exp') {
                 element = DOMstrings.expenseContainer;
-                html = '<div class="item clearfix" id="expense-%id%"> ' +
+                html = '<div class="item clearfix" id="exp-%id%"> ' +
                     '<div class="item__description">%description%</div> ' +
                     '<div class="right clearfix"> <div class="item__value">%value%</div> ' +
                     '<div class="item__percentage">21%</div> <div class="item__delete"> ' +
@@ -208,7 +209,9 @@ var controller = (function (budgetCtrl, UICtrl) {
                 ctrlAddItem();
             }
         });
-    }
+
+        document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
+    };
 
     var updateBudget = function () {
         // 5a. Calculate budget
@@ -241,6 +244,19 @@ var controller = (function (budgetCtrl, UICtrl) {
             // 5. Calculate and update budget
             updateBudget();
         }
+
+    };
+
+    // Event: target element
+    var ctrlDeleteItem = function (event) {
+        // event.target: each time we click on anything in the webpage, will log the target element
+        console.log(event.target);
+        // event.target.parentNode: each time we click on anything in the webpage, will log the parent target element
+        console.log(event.target.parentNode.parentNode.parentNode.parentNode.id);
+
+        var itemID, splitID, type, ID;
+        itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
+        
 
     };
 
