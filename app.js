@@ -210,6 +210,7 @@ var controller = (function (budgetCtrl, UICtrl) {
             }
         });
 
+        // Set up event listener to a parent element
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
     };
 
@@ -262,6 +263,16 @@ var controller = (function (budgetCtrl, UICtrl) {
             type = splitID[0];
             ID = splitID[1];
         }
+
+        // 1. Delete item from data structure
+
+
+        // 2. Delete item from UI
+
+
+        // 3. Update and show new budget
+
+
 
     };
 
