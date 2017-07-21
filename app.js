@@ -256,7 +256,12 @@ var controller = (function (budgetCtrl, UICtrl) {
 
         var itemID, splitID, type, ID;
         itemID = event.target.parentNode.parentNode.parentNode.parentNode.id;
-        
+        if (itemID) {
+            // Split strings into array - ex: (inc-100) will be [inc, 100]
+            splitID = itemID.split('-');
+            type = splitID[0];
+            ID = splitID[1];
+        }
 
     };
 
