@@ -177,6 +177,12 @@ var UIController = (function () {
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
         },
 
+        // Delete an exp or inc in UI
+        deleteListItem: function (selectorID) {
+            var el = document.getElementById(selectorID);
+            el.parentNode.removeChild(el);
+        },
+
         clearFields: function () {
             var fields, fieldsArr;
             // Selects both the description and the value as user inputs (defaults to a list)
@@ -289,7 +295,7 @@ var controller = (function (budgetCtrl, UICtrl) {
         budgetCtrl.deleteItem(type, ID);
 
         // 2. Delete item from UI
-
+        
 
         // 3. Update and show new budget
 
