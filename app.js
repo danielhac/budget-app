@@ -125,6 +125,14 @@ var budgetController = (function() {
             });
         },
 
+        getPercentages: function () {
+            // Loop through all expenses and return calculated percentages
+            var allPerc = data.allItems.exp.map(function (cur) {
+                return cur.getPercentage();
+            });
+            return allPerc;
+        },
+
         getBudget: function () {
             return {
                 budget: data.budget,
