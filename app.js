@@ -121,14 +121,14 @@ var budgetController = (function() {
         calculatePercentages: function() {
             // Loop through all expense and calculate percentages
             data.allItems.exp.forEach(function (cur) {
-                cur.calcPercentage();
+                cur.calcPercentage(data.totals.inc);
             });
         },
 
         getPercentages: function () {
             // Loop through all expenses and return calculated percentages
             var allPerc = data.allItems.exp.map(function (cur) {
-                return cur.getPercentage(data.totals.inc);
+                return cur.getPercentage();
             });
             return allPerc;
         },
