@@ -71,7 +71,7 @@ var budgetController = (function() {
             var ids, index;
 
             // map is similar to foreach but it creates a new array
-            var ids = data.allItems[type].map(function (current) {
+            ids = data.allItems[type].map(function (current) {
                 return current.id;
             });
 
@@ -282,11 +282,11 @@ var controller = (function (budgetCtrl, UICtrl) {
             // Split strings into array - ex: (inc-100) will be [inc, 100]
             splitID = itemID.split('-');
             type = splitID[0];
-            ID = splitID[1];
+            ID = parseInt(splitID[1]);
         }
 
         // 1. Delete item from data structure
-
+        
 
         // 2. Delete item from UI
 
