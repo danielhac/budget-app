@@ -404,6 +404,7 @@ var controller = (function (budgetCtrl, UICtrl) {
     return {
         init: function () {
             console.log('Started');
+            UICtrl.displayMonth();
             // Reset every UI to zero
             UICtrl.displayBudget({
                 budget: 0,
