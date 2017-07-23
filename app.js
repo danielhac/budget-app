@@ -266,6 +266,14 @@ var UIController = (function () {
             });
         },
 
+        formatNumber: function(num, type) {
+
+            num = Math.abs(num); // absolute value
+            num = num.toFixed(2); // round to 2 decimal places
+
+
+        },
+
         // Making 'DOMstrings' public
         getDOMstrings: function () {
             return DOMstrings;
