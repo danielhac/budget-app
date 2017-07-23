@@ -255,6 +255,15 @@ var UIController = (function () {
                 }
             };
 
+            // Using the forEach function above
+            nodeListForEach(fields, function (current, index) {
+                if(percentages[index] > 0) {
+                    // Loop through each index and display percentages in UI
+                    current.textContent = percentages[index] + '%';
+                } else {
+                    current.textContent = '---';
+                }
+            });
         },
 
         // Making 'DOMstrings' public
