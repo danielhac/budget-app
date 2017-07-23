@@ -64,6 +64,27 @@ var budgetController = (function() {
             return newItem
         },
 
+        deleteItem: function (type, id) {
+            // Cannot simply delete with code below because it may not be in order of array
+            // data.allItems[type][id]
+
+            var ids, index;
+
+            // map is similar to foreach but it creates a new array
+            var ids = data.allItems[type].map(function (current) {
+                return current.id;
+            });
+
+            // Selects the actual index of the array based on the number or 'id' as selected as below
+            index = ids.indexOf(id);
+
+            // If index exists...
+            if (index !== -1) {
+                // Delete the index and the 1 params is how many to splice
+                data.allItems[type].splice(index, 1)
+            }
+        },
+
         calculateBudget: function () {
 
             // calculate total income and expenses
