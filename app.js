@@ -165,7 +165,8 @@ var UIController = (function () {
         expensesLabel: '.budget__expenses--value',
         percentageLabel: '.budget__expenses--percentage',
         container: '.container',
-        expensesPercLabel: '.item__percentage'
+        expensesPercLabel: '.item__percentage',
+        dateLabel: '.budget__title--month'
     };
 
     var formatNumber = function(num, type) {
@@ -286,7 +287,13 @@ var UIController = (function () {
             });
         },
 
+        displayMonth: function () {
+            var now, year;
+            now = new Date();
 
+            year = now.getFullYear();
+            document.querySelector(DOMstrings.dateLabel).textContent = year;
+        },
 
         // Making 'DOMstrings' public
         getDOMstrings: function () {
