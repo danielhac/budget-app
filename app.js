@@ -8,6 +8,17 @@ var budgetController = (function() {
         this.id = id;
         this.description = description;
         this.value = value;
+        this.percentage = -1;
+    };
+
+    // Creating prototype since all objects created through expense prototype will inherit this method
+    Expense.prototype.calcPercentage = function (totalIncome) {
+        if(totalIncome > 0) {
+            // Calculating percentage by dividing current value by totalIncom
+            this.percentage = Math.round((this.value / totalIncome) * 100);
+        } else {
+            this.percentage = -1;
+        }
     };
 
     var Income = function (id, description, value) {
@@ -100,6 +111,10 @@ var budgetController = (function() {
             } else {
                 data.percentage = -1;
             }
+        },
+
+        calculatePercentages: function() {
+
         },
 
         getBudget: function () {
