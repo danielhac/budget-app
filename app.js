@@ -168,6 +168,23 @@ var UIController = (function () {
         expensesPercLabel: '.item__percentage'
     };
 
+    var formatNumber = function(num, type) {
+
+        var numSplit, int, dec;
+        num = Math.abs(num); // absolute value
+        num = num.toFixed(2); // round to 2 decimal places
+
+        numSplit = num.split('.'); // split
+        int = numSplit[0];
+        // If int is 1000 or more, add comma in appropriate place
+        if(int.length > 3) {
+            int = int.substr(0, int.length - 3) + ',' + int.substr(int.length -3, 3);
+        }
+        dec = numSplit[1];
+
+        return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
+    };
+
     return {
         getinput: function () {
             // Instead of returning the 3 variables, return an object containing 3 properties
@@ -266,22 +283,7 @@ var UIController = (function () {
             });
         },
 
-        formatNumber: function(num, type) {
 
-            var numSplit, int, dec;
-            num = Math.abs(num); // absolute value
-            num = num.toFixed(2); // round to 2 decimal places
-
-            numSplit = num.split('.'); // split
-            int = numSplit[0];
-            // If int is 1000 or more, add comma in appropriate place
-            if(int.length > 3) {
-                int = int.substr(0, int.length - 3) + ',' + int.substr(int.length -3, 3);
-            }
-            dec = numSplit[1];
-
-            return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
-        },
 
         // Making 'DOMstrings' public
         getDOMstrings: function () {
