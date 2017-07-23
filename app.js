@@ -286,7 +286,7 @@ var controller = (function (budgetCtrl, UICtrl) {
         }
 
         // 1. Delete item from data structure
-        
+        budgetCtrl.deleteItem(type, ID);
 
         // 2. Delete item from UI
 
