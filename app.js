@@ -293,9 +293,17 @@ var UIController = (function () {
 
             months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             month = now.getMonth();
-
             year = now.getFullYear();
+
             document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
+        },
+
+        changedType: function () {
+            var fields = document.querySelectorAll(
+                DOMstrings.inputType + ',' +
+                DOMstrings.inputDescription + ',' +
+                DOMstrings.inputValue
+            );
         },
 
         // Making 'DOMstrings' public
@@ -325,6 +333,9 @@ var controller = (function (budgetCtrl, UICtrl) {
 
         // Set up event listener to a parent element
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
+
+        // Set up event listener for 'income' or 'expenses'
+        document.querySelector(DOM.inputType).addEventListener('click', UICtrl.changedType);
     };
 
     var updateBudget = function () {
