@@ -304,6 +304,10 @@ var UIController = (function () {
                 DOMstrings.inputDescription + ',' +
                 DOMstrings.inputValue
             );
+
+            nodeListForEach(fields, function (cur) {
+                cur.classList.toggle('red-focus');
+            });
         },
 
         // Making 'DOMstrings' public
