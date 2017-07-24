@@ -186,6 +186,13 @@ var UIController = (function () {
         return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
     };
 
+    // Resuable forEach function
+    var nodeListForEach = function (list, callback) {
+        for (var i=0; i < list.length; i++) {
+            callback(list[i], i);
+        }
+    };
+
     return {
         getinput: function () {
             // Instead of returning the 3 variables, return an object containing 3 properties
@@ -268,13 +275,6 @@ var UIController = (function () {
         displayPercentages: function (percentages) {
             // Node list
             var fields = document.querySelectorAll(DOMstrings.expensesPercLabel);
-
-            // Resuable forEach function
-            var nodeListForEach = function (list, callback) {
-                for (var i=0; i < list.length; i++) {
-                    callback(list[i], i);
-                }
-            };
 
             // Using the forEach function above
             nodeListForEach(fields, function (current, index) {
