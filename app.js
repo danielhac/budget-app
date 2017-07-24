@@ -305,9 +305,13 @@ var UIController = (function () {
                 DOMstrings.inputValue
             );
 
+            // Toggles a class for the 3 fields using the reusable forEach loop function
             nodeListForEach(fields, function (cur) {
                 cur.classList.toggle('red-focus');
             });
+
+            // Toggles a class for the input button
+            document.querySelector(DOMstrings.inputBtn).classList.toggle('red');
         },
 
         // Making 'DOMstrings' public
