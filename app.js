@@ -335,7 +335,7 @@ var controller = (function (budgetCtrl, UICtrl) {
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
 
         // Set up event listener for 'income' or 'expenses'
-        document.querySelector(DOM.inputType).addEventListener('click', UICtrl.changedType);
+        document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changedType);
     };
 
     var updateBudget = function () {
